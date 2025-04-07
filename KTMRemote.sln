@@ -1,0 +1,80 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35027.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Host", "Host", "{BAD79040-E68D-456B-946B-76FEBEA8A2B7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{14930E54-ECC3-4692-B502-827524E076F6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Contracts", "Contracts", "{98178A02-8174-4258-915B-F02FA4DF29B9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{CF9F1F7A-7B04-49F9-B421-32A7EADC30AC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastucture", "Infrastucture", "{BC712315-A891-436D-9F99-CDBA0D9A653F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTMRemote.MVC", "Hosts\KTMRemote.MVC\KTMRemote.MVC.csproj", "{0E511B92-641F-4C2E-A55C-7DACF24537DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTMRemote.Domain", "Domain\KTMRemote.Domain\KTMRemote.Domain.csproj", "{319307BD-BCE7-4721-A19A-50F478D95450}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTMRemote.AppServices", "Application\KTMRemote.AppServices\KTMRemote.AppServices.csproj", "{8A607044-E9C2-470C-9F96-E561698A5669}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTMRemote.Contracts", "Contracts\KTMRemote.Contracts\KTMRemote.Contracts.csproj", "{093A74BF-008E-43B2-B37C-08F0C6A075F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTMRemote.ComponentRegistrar", "Infrastucture\KTMRemote.ComponentRegistrar\KTMRemote.ComponentRegistrar.csproj", "{0F32C9AF-8111-43BD-884B-D37E12D37579}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTMRemote.DataAccess", "Infrastucture\KTMRemote.DataAccess\KTMRemote.DataAccess.csproj", "{343EBC13-A604-4EF3-8E52-D4A3F1DF6232}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTMRemote.Infrastucture", "Infrastucture\KTMRemote.Infrastucture\KTMRemote.Infrastucture.csproj", "{DA523889-EC08-49A8-9AEC-E065FDF94F68}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0E511B92-641F-4C2E-A55C-7DACF24537DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E511B92-641F-4C2E-A55C-7DACF24537DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E511B92-641F-4C2E-A55C-7DACF24537DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E511B92-641F-4C2E-A55C-7DACF24537DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{319307BD-BCE7-4721-A19A-50F478D95450}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{319307BD-BCE7-4721-A19A-50F478D95450}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{319307BD-BCE7-4721-A19A-50F478D95450}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{319307BD-BCE7-4721-A19A-50F478D95450}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A607044-E9C2-470C-9F96-E561698A5669}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A607044-E9C2-470C-9F96-E561698A5669}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A607044-E9C2-470C-9F96-E561698A5669}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A607044-E9C2-470C-9F96-E561698A5669}.Release|Any CPU.Build.0 = Release|Any CPU
+		{093A74BF-008E-43B2-B37C-08F0C6A075F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{093A74BF-008E-43B2-B37C-08F0C6A075F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{093A74BF-008E-43B2-B37C-08F0C6A075F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{093A74BF-008E-43B2-B37C-08F0C6A075F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F32C9AF-8111-43BD-884B-D37E12D37579}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F32C9AF-8111-43BD-884B-D37E12D37579}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F32C9AF-8111-43BD-884B-D37E12D37579}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F32C9AF-8111-43BD-884B-D37E12D37579}.Release|Any CPU.Build.0 = Release|Any CPU
+		{343EBC13-A604-4EF3-8E52-D4A3F1DF6232}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{343EBC13-A604-4EF3-8E52-D4A3F1DF6232}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{343EBC13-A604-4EF3-8E52-D4A3F1DF6232}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{343EBC13-A604-4EF3-8E52-D4A3F1DF6232}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA523889-EC08-49A8-9AEC-E065FDF94F68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA523889-EC08-49A8-9AEC-E065FDF94F68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA523889-EC08-49A8-9AEC-E065FDF94F68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA523889-EC08-49A8-9AEC-E065FDF94F68}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0E511B92-641F-4C2E-A55C-7DACF24537DA} = {BAD79040-E68D-456B-946B-76FEBEA8A2B7}
+		{319307BD-BCE7-4721-A19A-50F478D95450} = {CF9F1F7A-7B04-49F9-B421-32A7EADC30AC}
+		{8A607044-E9C2-470C-9F96-E561698A5669} = {14930E54-ECC3-4692-B502-827524E076F6}
+		{093A74BF-008E-43B2-B37C-08F0C6A075F9} = {98178A02-8174-4258-915B-F02FA4DF29B9}
+		{0F32C9AF-8111-43BD-884B-D37E12D37579} = {BC712315-A891-436D-9F99-CDBA0D9A653F}
+		{343EBC13-A604-4EF3-8E52-D4A3F1DF6232} = {BC712315-A891-436D-9F99-CDBA0D9A653F}
+		{DA523889-EC08-49A8-9AEC-E065FDF94F68} = {BC712315-A891-436D-9F99-CDBA0D9A653F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E2B4B397-1CEC-4042-8431-47774E616B7C}
+	EndGlobalSection
+EndGlobal
