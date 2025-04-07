@@ -10,9 +10,11 @@ public class KNXController : Controller
 {
 
     private readonly IKNXConnectService _knxConnectService;
-    public KNXController(IKNXConnectService knxConnectService)
+    private readonly IKNXDiscoverIpDevices _knxDiscoverIpDevices;
+    public KNXController(IKNXConnectService knxConnectService, IKNXDiscoverIpDevices knxDiscoverIpDevices)
     {
         _knxConnectService = knxConnectService;
+        _knxDiscoverIpDevices = knxDiscoverIpDevices;
     }
 
     [HttpGet]
@@ -27,14 +29,16 @@ public class KNXController : Controller
         KNXConnectDto dto = new KNXConnectDto { Ip = "192.168.8.134", Port = 3671 };
         KnxBus bus = _knxConnectService.CreateIpTunneling(dto);
 
-        var ipDeviceDiscoveryResults = KnxBus.DiscoverIpDevicesAsync(cancellation);
+
+        var devices = _knxDiscoverIpDevices.DiscoverAsync(cancellation);
+        /*var ipDeviceDiscoveryResults = KnxBus.DiscoverIpDevicesAsync(cancellation);
         var devices = ipDeviceDiscoveryResults.ToList(cancellation);
         for(int i = 0; i < devices.Result.Count; i++)
         {
             Console.WriteLine(devices.Result[i]);
-        }
+        }*/
 
-        await _knxConnectService.ConnectAsync(bus, cancellation);
+        //await _knxConnectService.ConnectAsync(bus, cancellation);
 
 
         GroupAddress address = new GroupAddress(model.address);
@@ -42,7 +46,7 @@ public class KNXController : Controller
 
         MessagePriority messagePriority = MessagePriority.Low;
 
-        await bus.WriteGroupValueAsync(address, value, messagePriority, cancellation);
+        //await bus.WriteGroupValueAsync(address, value, messagePriority, cancellation);
 
 
         return Ok();
