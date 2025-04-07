@@ -6,4 +6,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Knx.Falcon.Sdk" Version="6.3.7959" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Contracts\KTMRemote.Contracts\KTMRemote.Contracts.csproj" />
+  </ItemGroup>
+
 </Project>

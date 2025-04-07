@@ -1,3 +1,5 @@
+using KTMRemote.ComponentRegistrar;
+
 namespace KTMRemote.MVC
 {
     public class Program
@@ -8,6 +10,8 @@ namespace KTMRemote.MVC
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            Registrar.AddComponents(builder.Services, builder.Configuration);
 
             var app = builder.Build();
 
