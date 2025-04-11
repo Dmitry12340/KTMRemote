@@ -23,22 +23,20 @@ public class KNXController : Controller
         return View();
     }
 
+    [HttpGet]
+    public IActionResult KNXWrite()
+    {
+        return View();
+    }
+
     [HttpPost]
     public async Task<IActionResult> KNXWrite(KNXGroupModel model, CancellationToken cancellation)
     {
-        KNXConnectDto dto = new KNXConnectDto { Ip = "192.168.8.134", Port = 3671 };
+        /*KNXConnectDto dto = new KNXConnectDto { Ip = "192.168.8.134", Port = 3671 };
         KnxBus bus = _knxConnectService.CreateIpTunneling(dto);
 
 
-        var devices = _knxDiscoverIpDevices.DiscoverAsync(cancellation);
-        /*var ipDeviceDiscoveryResults = KnxBus.DiscoverIpDevicesAsync(cancellation);
-        var devices = ipDeviceDiscoveryResults.ToList(cancellation);
-        for(int i = 0; i < devices.Result.Count; i++)
-        {
-            Console.WriteLine(devices.Result[i]);
-        }*/
-
-        //await _knxConnectService.ConnectAsync(bus, cancellation);
+        var devices = _knxDiscoverIpDevices.DiscoverAsync(cancellation);*/
 
 
         GroupAddress address = new GroupAddress(model.address);
@@ -46,9 +44,22 @@ public class KNXController : Controller
 
         MessagePriority messagePriority = MessagePriority.Low;
 
-        //await bus.WriteGroupValueAsync(address, value, messagePriority, cancellation);
-
+        await _knxConnectService.Bus.WriteGroupValueAsync(address, value, messagePriority);
 
         return Ok();
+    }
+
+    [HttpGet]
+    public IActionResult KNXConnect()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> KNXConnect(KNXConnectModel model, CancellationToken cancellation)
+    {
+        var ipTunneling = _knxConnectService.CreateIpTunneling(new KNXConnectDto { Ip = model.Ip, Port = model.Port });
+        await _knxConnectService.ConnectAsync(cancellation);
+        return View();
     }
 }

@@ -1,0 +1,27 @@
+﻿@model KNXConnectModel
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KNX Connect</title>
+</head>
+<body>
+    <h1>KNX Connect</h1>
+
+    <form asp-action="KNXConnect" method="post">
+        <div>
+            <label asp-for="Ip">Ip</label>
+            <input asp-for="Ip" placeholder="Введите Ip" />
+        </div>
+
+        <div>
+            <label asp-for="Port">Port</label>
+            <input asp-for="Port" placeholder="Введите Port" />
+        </div>
+
+        <button type="submit">Отправить</button>
+    </form>
+</body>
+</html>

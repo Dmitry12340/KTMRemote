@@ -1,27 +1,19 @@
-﻿@model KNXGroupModel
+﻿@{
+    ViewData["Title"] = "KNX Control";
+}
 
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KNX Menu</title>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
 </head>
 <body>
-    <h1>KNX Menu</h1>
-
-    <form asp-action="KNXWrite" method="post">
-        <div>
-            <label asp-for="address">Адрес</label>
-            <input asp-for="address" placeholder="Введите адрес" />
-        </div>
-
-        <div>
-            <label asp-for="value">Значение</label>
-            <input asp-for="value" placeholder="Введите значение" />
-        </div>
-
-        <button type="submit">Отправить</button>
-    </form>
+    <div class="button-container">
+        <h1>@ViewData["Title"]</h1>
+        <h1><a asp-controller="KNX" asp-action="KNXConnect" class="btn btn-success btn-custom">Подключение</a></h1>
+        <h1><a asp-controller="KNX" asp-action="KNXWrite" class="btn btn-primary btn-custom">Запись</a></h1>
+    </div>
 </body>
 </html>

@@ -1,0 +1,27 @@
+﻿@model KNXGroupModel
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KNX Write</title>
+</head>
+<body>
+    <h1>KNX Write</h1>
+
+    <form asp-action="KNXWrite" method="post">
+        <div>
+            <label asp-for="address">Адрес</label>
+            <input asp-for="address" placeholder="Введите адрес" />
+        </div>
+
+        <div>
+            <label asp-for="value">Значение</label>
+            <input asp-for="value" placeholder="Введите значение" />
+        </div>
+
+        <button type="submit">Отправить</button>
+    </form>
+</body>
+</html>

@@ -12,7 +12,7 @@ public static class Registrar
 
     private static void RegisterServices(IServiceCollection services)
     {
-        services.AddScoped<IKNXConnectService, KNXConnectService>();
+        services.AddSingleton<IKNXConnectService, KNXConnectService>();
         services.AddScoped<IKNXDiscoverIpDevices, KNXDiscoverIpDevices>();
     }
 }
