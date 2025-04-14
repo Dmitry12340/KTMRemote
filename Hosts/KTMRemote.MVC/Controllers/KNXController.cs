@@ -1,5 +1,4 @@
-﻿using Knx.Falcon.Sdk;
-using Knx.Falcon;
+﻿using Knx.Falcon;
 using KTMRemote.Contracts.KNXDto;
 using KTMRemote.MVC.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -32,7 +31,7 @@ public class KNXController : Controller
     [HttpPost]
     public async Task<IActionResult> KNXWrite(KNXGroupModel model, CancellationToken cancellation)
     {
-        /*KNXConnectDto dto = new KNXConnectDto { Ip = "192.168.8.134", Port = 3671 };
+        /*KNXConnectDto dto = new KNXConnectDto { Ip = "192.168.8.138", Port = 3671 };
         KnxBus bus = _knxConnectService.CreateIpTunneling(dto);
 
 
@@ -46,20 +45,37 @@ public class KNXController : Controller
 
         await _knxConnectService.Bus.WriteGroupValueAsync(address, value, messagePriority);
 
-        return Ok();
+        return View();
     }
 
     [HttpGet]
     public IActionResult KNXConnect()
     {
+        if (_knxConnectService.Bus == null)
+            ViewBag.State = "Disconnect";
+        else
+            ViewBag.State = _knxConnectService.Bus.ConnectionState;
+
         return View();
     }
 
     [HttpPost]
     public async Task<IActionResult> KNXConnect(KNXConnectModel model, CancellationToken cancellation)
     {
-        var ipTunneling = _knxConnectService.CreateIpTunneling(new KNXConnectDto { Ip = model.Ip, Port = model.Port });
-        await _knxConnectService.ConnectAsync(cancellation);
+        await _knxConnectService.ConnectAsync(new KNXConnectDto { Ip = model.Ip, Port = model.Port }, cancellation);
+
+
+        if (_knxConnectService.Bus == null)
+            ViewBag.State = "Disconnect";
+        else
+            ViewBag.State = _knxConnectService.Bus.ConnectionState;
         return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> KNXDisconnect(CancellationToken cancellation)
+    {
+        await _knxConnectService.DisconnectAsync(cancellation);
+        return View("KNXConnect");
     }
 }

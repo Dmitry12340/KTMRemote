@@ -5,6 +5,7 @@ namespace KTMRemote.AppServices.KNX.Services;
 public interface IKNXConnectService
 {
     KnxBus Bus { get; }
-    Task ConnectAsync(CancellationToken cancellation);
-    KnxBus CreateIpTunneling(KNXConnectDto connectDto);
+    Task ConnectAsync(KNXConnectDto connectDto, CancellationToken cancellation);
+    Task CreateIpTunnelingAsync(KNXConnectDto connectDto, CancellationToken cancellation);
+    Task DisconnectAsync(CancellationToken cancelToken);
 }

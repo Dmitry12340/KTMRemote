@@ -2,5 +2,5 @@
 public sealed class KNXConnectModel
 {
     public string Ip { get; set; }
-    public int Port { get; set; }
+    public int Port { get; set; } = 3671;
 }

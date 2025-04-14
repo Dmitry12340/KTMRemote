@@ -16,12 +16,8 @@
             <input asp-for="Ip" placeholder="Введите Ip" />
         </div>
 
-        <div>
-            <label asp-for="Port">Port</label>
-            <input asp-for="Port" placeholder="Введите Port" />
-        </div>
-
-        <button type="submit">Отправить</button>
+        <button type="submit">Connect</button>
     </form>
+    <div>State:@ViewBag.State</div>
 </body>
 </html>
