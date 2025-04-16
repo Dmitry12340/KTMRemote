@@ -9,8 +9,8 @@ public class KNXController : Controller
 {
 
     private readonly IKNXConnectService _knxConnectService;
-    private readonly IKNXDiscoverIpDevices _knxDiscoverIpDevices;
-    public KNXController(IKNXConnectService knxConnectService, IKNXDiscoverIpDevices knxDiscoverIpDevices)
+    private readonly IKNXDiscoverIpDevicesService _knxDiscoverIpDevices;
+    public KNXController(IKNXConnectService knxConnectService, IKNXDiscoverIpDevicesService knxDiscoverIpDevices)
     {
         _knxConnectService = knxConnectService;
         _knxDiscoverIpDevices = knxDiscoverIpDevices;
