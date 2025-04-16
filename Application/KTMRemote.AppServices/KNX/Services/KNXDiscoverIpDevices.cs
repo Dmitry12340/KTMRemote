@@ -13,6 +13,12 @@ public class KNXDiscoverIpDevices : IKNXDiscoverIpDevices
             foreach(var result in results)
             {
                 Console.WriteLine(result);
+                Console.WriteLine(result.ToConnectionString());
+                Console.WriteLine("Individual Address = " + result.IndividualAddress.ToString());
+                Console.WriteLine("Name = " + result.FriendlyName);
+                Console.WriteLine("Programming Mode = " + result.IsInProgrammingMode);
+                Console.WriteLine("IP Address = " + result.ControlEndpoint.Address);
+                Console.WriteLine("Port = " + result.ControlEndpoint.Port);
             }
             return results;
         }

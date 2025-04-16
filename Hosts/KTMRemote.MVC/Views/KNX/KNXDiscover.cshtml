@@ -1,0 +1,22 @@
+﻿@*@model KNXConnectModel*@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KNX Discover</title>
+</head>
+<body>
+    <h1>KNX Discover</h1>
+
+    <form asp-action="KNXDiscover" method="post">
+        @*<div>
+            <label asp-for="Ip">Ip</label>
+            <input asp-for="Ip" placeholder="Введите Ip" />
+        </div>*@
+
+        <button type="submit">Discover</button>
+    </form>
+</body>
+</html>

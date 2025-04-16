@@ -31,13 +31,6 @@ public class KNXController : Controller
     [HttpPost]
     public async Task<IActionResult> KNXWrite(KNXGroupModel model, CancellationToken cancellation)
     {
-        /*KNXConnectDto dto = new KNXConnectDto { Ip = "192.168.8.138", Port = 3671 };
-        KnxBus bus = _knxConnectService.CreateIpTunneling(dto);
-
-
-        var devices = _knxDiscoverIpDevices.DiscoverAsync(cancellation);*/
-
-
         GroupAddress address = new GroupAddress(model.address);
         GroupValue value = new GroupValue(model.value);
 
@@ -84,8 +77,9 @@ public class KNXController : Controller
     }
 
     [HttpPost]
-    public Task<IActionResult> KNXDiscover(CancellationToken cancellation)
+    public async Task<IActionResult> KNXDiscover(CancellationToken cancellation)
     {
+        _knxDiscoverIpDevices.DiscoverAsync(cancellation);
         return View();
     }
 }
