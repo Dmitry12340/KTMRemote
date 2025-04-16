@@ -1,4 +1,5 @@
-﻿@*@model KNXConnectModel*@
+﻿@using KTMRemote.Contracts.KNXDto;
+@model List<DiscoverDeviceDto>
 
 <!DOCTYPE html>
 <html lang="ru">
@@ -11,12 +12,68 @@
     <h1>KNX Discover</h1>
 
     <form asp-action="KNXDiscover" method="post">
-        @*<div>
-            <label asp-for="Ip">Ip</label>
-            <input asp-for="Ip" placeholder="Введите Ip" />
-        </div>*@
-
         <button type="submit">Discover</button>
     </form>
+
+    <div class="device-container">
+        @if (Model != null && Model.Any())
+        {
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Имя устройства</th>
+                        <th>Индивидуальный адрес</th>
+                        <th>Режим программирования</th>
+                        <th>IP</th>
+                        <th>Порт</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var device in Model)
+                    {
+                        <tr>
+                            <td>@device.Name</td>
+                            <td>@device.IndividualAddress</td>
+                            <td>@device.ProgrammingMode</td>
+                            <td>@device.Ip</td>
+                            <td>@device.Port</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div class="device-info">
+                <strong>Устройства не найдены:</strong><br />
+            </div>
+        }
+    </div>
 </body>
 </html>
+
+<style>
+    .device-container {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 20px; /* добавим отступ сверху */
+    }
+
+    table {
+        width: 100%; /* таблица занимает всю ширину контейнера */
+        border-collapse: collapse; /* убираем двойные границы между ячейками */
+    }
+
+    th, td {
+        padding: 8px; /* добавляем отступы внутри ячеек */
+        text-align: left; /* выравнивание текста по левому краю */
+    }
+
+    th {
+        background-color: #f2f2f2; /* фоновый цвет для заголовков */
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f9f9; /* чередование фона для строк */
+    }
+</style>
