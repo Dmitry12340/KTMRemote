@@ -43,10 +43,7 @@ public class KNXController : Controller
     [HttpGet]
     public IActionResult KNXConnect()
     {
-        ViewBag.State = "Disconnect";
-        if (_knxConnectService.Bus != null)
-            ViewBag.State = _knxConnectService.Bus.ConnectionState;
-
+        UpdateConnectionState();
         return View();
     }
 
@@ -55,10 +52,7 @@ public class KNXController : Controller
     {
         await _knxConnectService.ConnectAsync(new KNXConnectDto { Ip = model.Ip, Port = model.Port }, cancellation);
 
-        ViewBag.State = "Disconnect";
-        if (_knxConnectService.Bus != null)
-            ViewBag.State = _knxConnectService.Bus.ConnectionState;
-
+        UpdateConnectionState();
         return View();
     }
 
@@ -66,6 +60,8 @@ public class KNXController : Controller
     public async Task<IActionResult> KNXDisconnect(CancellationToken cancellation)
     {
         await _knxConnectService.DisconnectAsync(cancellation);
+
+        UpdateConnectionState();
         return View("KNXConnect");
     }
 
@@ -85,5 +81,12 @@ public class KNXController : Controller
             Console.WriteLine(dto.ToString());
         }
         return View(dtos);
+    }
+
+    private void UpdateConnectionState()
+    {
+        ViewBag.State = "Closed";
+        if (_knxConnectService.Bus != null)
+            ViewBag.State = _knxConnectService.Bus.ConnectionState;
     }
 }
