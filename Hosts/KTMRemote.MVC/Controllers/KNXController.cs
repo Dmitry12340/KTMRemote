@@ -51,9 +51,8 @@ public class KNXController : Controller
     [HttpGet]
     public IActionResult KNXConnect()
     {
-        if (_knxConnectService.Bus == null)
-            ViewBag.State = "Disconnect";
-        else
+        ViewBag.State = "Disconnect";
+        if (_knxConnectService.Bus != null)
             ViewBag.State = _knxConnectService.Bus.ConnectionState;
 
         return View();
@@ -64,11 +63,10 @@ public class KNXController : Controller
     {
         await _knxConnectService.ConnectAsync(new KNXConnectDto { Ip = model.Ip, Port = model.Port }, cancellation);
 
-
-        if (_knxConnectService.Bus == null)
-            ViewBag.State = "Disconnect";
-        else
+        ViewBag.State = "Disconnect";
+        if (_knxConnectService.Bus != null)
             ViewBag.State = _knxConnectService.Bus.ConnectionState;
+
         return View();
     }
 
