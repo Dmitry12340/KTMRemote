@@ -7,10 +7,9 @@ using KTMRemote.AppServices.KNX.Services;
 namespace KTMRemote.MVC.Controllers;
 public class KNXController : Controller
 {
-
     private readonly IKNXConnectService _knxConnectService;
-    private readonly IKNXDiscoverIpDevices _knxDiscoverIpDevices;
-    public KNXController(IKNXConnectService knxConnectService, IKNXDiscoverIpDevices knxDiscoverIpDevices)
+    private readonly IKNXDiscoverIpDevicesService _knxDiscoverIpDevices;
+    public KNXController(IKNXConnectService knxConnectService, IKNXDiscoverIpDevicesService knxDiscoverIpDevices)
     {
         _knxConnectService = knxConnectService;
         _knxDiscoverIpDevices = knxDiscoverIpDevices;
@@ -31,13 +30,6 @@ public class KNXController : Controller
     [HttpPost]
     public async Task<IActionResult> KNXWrite(KNXGroupModel model, CancellationToken cancellation)
     {
-        /*KNXConnectDto dto = new KNXConnectDto { Ip = "192.168.8.138", Port = 3671 };
-        KnxBus bus = _knxConnectService.CreateIpTunneling(dto);
-
-
-        var devices = _knxDiscoverIpDevices.DiscoverAsync(cancellation);*/
-
-
         GroupAddress address = new GroupAddress(model.address);
         GroupValue value = new GroupValue(model.value);
 
@@ -51,10 +43,7 @@ public class KNXController : Controller
     [HttpGet]
     public IActionResult KNXConnect()
     {
-        ViewBag.State = "Disconnect";
-        if (_knxConnectService.Bus != null)
-            ViewBag.State = _knxConnectService.Bus.ConnectionState;
-
+        UpdateConnectionState();
         return View();
     }
 
@@ -63,10 +52,7 @@ public class KNXController : Controller
     {
         await _knxConnectService.ConnectAsync(new KNXConnectDto { Ip = model.Ip, Port = model.Port }, cancellation);
 
-        ViewBag.State = "Disconnect";
-        if (_knxConnectService.Bus != null)
-            ViewBag.State = _knxConnectService.Bus.ConnectionState;
-
+        UpdateConnectionState();
         return View();
     }
 
@@ -74,6 +60,8 @@ public class KNXController : Controller
     public async Task<IActionResult> KNXDisconnect(CancellationToken cancellation)
     {
         await _knxConnectService.DisconnectAsync(cancellation);
+
+        UpdateConnectionState();
         return View("KNXConnect");
     }
 
@@ -84,8 +72,21 @@ public class KNXController : Controller
     }
 
     [HttpPost]
-    public Task<IActionResult> KNXDiscover(CancellationToken cancellation)
+    public async Task<IActionResult> KNXDiscover(CancellationToken cancellation)
     {
-        return View();
+        List<DiscoverDeviceDto> dtos = _knxDiscoverIpDevices.DiscoverAsync(cancellation);
+        Console.WriteLine();
+        foreach (var dto in dtos)
+        {
+            Console.WriteLine(dto.ToString());
+        }
+        return View(dtos);
+    }
+
+    private void UpdateConnectionState()
+    {
+        ViewBag.State = "Closed";
+        if (_knxConnectService.Bus != null)
+            ViewBag.State = _knxConnectService.Bus.ConnectionState;
     }
 }
