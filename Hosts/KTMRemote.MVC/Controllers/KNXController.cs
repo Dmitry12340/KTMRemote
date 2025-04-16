@@ -76,4 +76,16 @@ public class KNXController : Controller
         await _knxConnectService.DisconnectAsync(cancellation);
         return View("KNXConnect");
     }
+
+    [HttpGet]
+    public IActionResult KNXDiscover()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public Task<IActionResult> KNXDiscover(CancellationToken cancellation)
+    {
+        return View();
+    }
 }
