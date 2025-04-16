@@ -7,7 +7,6 @@ using KTMRemote.AppServices.KNX.Services;
 namespace KTMRemote.MVC.Controllers;
 public class KNXController : Controller
 {
-
     private readonly IKNXConnectService _knxConnectService;
     private readonly IKNXDiscoverIpDevicesService _knxDiscoverIpDevices;
     public KNXController(IKNXConnectService knxConnectService, IKNXDiscoverIpDevicesService knxDiscoverIpDevices)
@@ -79,7 +78,12 @@ public class KNXController : Controller
     [HttpPost]
     public async Task<IActionResult> KNXDiscover(CancellationToken cancellation)
     {
-        _knxDiscoverIpDevices.DiscoverAsync(cancellation);
-        return View();
+        List<DiscoverDeviceDto> dtos = _knxDiscoverIpDevices.DiscoverAsync(cancellation);
+        Console.WriteLine();
+        foreach (var dto in dtos)
+        {
+            Console.WriteLine(dto.ToString());
+        }
+        return View(dtos);
     }
 }

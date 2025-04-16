@@ -14,12 +14,6 @@ public class KNXDiscoverIpDevicesService : IKNXDiscoverIpDevicesService
         {
             foreach(var result in results)
             {
-                Console.WriteLine("Name = " + result.FriendlyName);
-                Console.WriteLine("Individual Address = " + result.IndividualAddress.ToString());
-                Console.WriteLine("Programming Mode = " + result.IsInProgrammingMode);
-                Console.WriteLine("IP Address = " + result.ControlEndpoint.Address);
-                Console.WriteLine("Port = " + result.ControlEndpoint.Port);
-
                 DiscoverDeviceDto dto = new DiscoverDeviceDto();
                 dto.Name = result.FriendlyName;
                 dto.IndividualAddress = result.IndividualAddress;
