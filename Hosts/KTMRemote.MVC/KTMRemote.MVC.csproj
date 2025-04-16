@@ -10,4 +10,11 @@
     <ProjectReference Include="..\..\Infrastucture\KTMRemote.ComponentRegistrar\KTMRemote.ComponentRegistrar.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Views\KNX\KNXDiscover.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>
