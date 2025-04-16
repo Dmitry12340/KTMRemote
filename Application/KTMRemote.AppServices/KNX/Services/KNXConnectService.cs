@@ -16,7 +16,7 @@ public class KNXConnectService : IKNXConnectService
             await _bus.ConnectAsync(cancellation);
     }
 
-    public async Task CreateIpTunnelingAsync(KNXConnectDto connectDto, CancellationToken cancellation)
+    private async Task CreateIpTunnelingAsync(KNXConnectDto connectDto, CancellationToken cancellation)
     {
         await DisconnectAsync(cancellation);
 
