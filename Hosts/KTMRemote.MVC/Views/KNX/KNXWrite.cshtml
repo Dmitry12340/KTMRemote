@@ -1,4 +1,5 @@
-﻿@model KNXGroupModel
+﻿@using KTMRemote.Contracts.KNXDto;
+@model KNXMassageDto
 
 <!DOCTYPE html>
 <html lang="ru">
@@ -12,13 +13,13 @@
 
     <form asp-action="KNXWrite" method="post">
         <div>
-            <label asp-for="address">Адрес</label>
-            <input asp-for="address" placeholder="Введите адрес" />
+            <label asp-for="Address">Адрес</label>
+            <input asp-for="Address" placeholder="Введите адрес" />
         </div>
 
         <div>
-            <label asp-for="value">Значение</label>
-            <input asp-for="value" placeholder="Введите значение" />
+            <label asp-for="Value">Значение</label>
+            <input asp-for="Value" placeholder="Введите значение" />
         </div>
 
         <button type="submit">Отправить</button>
