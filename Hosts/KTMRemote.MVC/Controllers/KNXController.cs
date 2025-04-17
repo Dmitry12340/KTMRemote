@@ -1,5 +1,4 @@
-﻿using Knx.Falcon;
-using KTMRemote.Contracts.KNXDto;
+﻿using KTMRemote.Contracts.KNXDto;
 using KTMRemote.MVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using KTMRemote.AppServices.KNX.Services;
@@ -9,10 +8,14 @@ public class KNXController : Controller
 {
     private readonly IKNXConnectService _knxConnectService;
     private readonly IKNXDiscoverIpDevicesService _knxDiscoverIpDevices;
-    public KNXController(IKNXConnectService knxConnectService, IKNXDiscoverIpDevicesService knxDiscoverIpDevices)
+    private readonly IDataExchangeWithBus _dataExchangeWithBus;
+    public KNXController(IKNXConnectService knxConnectService,
+        IKNXDiscoverIpDevicesService knxDiscoverIpDevices,
+        IDataExchangeWithBus dataExchangeWithBus)
     {
         _knxConnectService = knxConnectService;
         _knxDiscoverIpDevices = knxDiscoverIpDevices;
+        _dataExchangeWithBus = dataExchangeWithBus;
     }
 
     [HttpGet]
@@ -28,14 +31,9 @@ public class KNXController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> KNXWrite(KNXGroupModel model, CancellationToken cancellation)
+    public async Task<IActionResult> KNXWrite(KNXMassageDto model, CancellationToken cancellation)
     {
-        GroupAddress address = new GroupAddress(model.address);
-        GroupValue value = new GroupValue(model.value);
-
-        MessagePriority messagePriority = MessagePriority.Low;
-
-        await _knxConnectService.Bus.WriteGroupValueAsync(address, value, messagePriority);
+        await _dataExchangeWithBus.WriteGroupAsync(model, cancellation);
 
         return View();
     }
@@ -72,14 +70,9 @@ public class KNXController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> KNXDiscover(CancellationToken cancellation)
+    public IActionResult KNXDiscover(CancellationToken cancellation)
     {
         List<DiscoverDeviceDto> dtos = _knxDiscoverIpDevices.DiscoverAsync(cancellation);
-        Console.WriteLine();
-        foreach (var dto in dtos)
-        {
-            Console.WriteLine(dto.ToString());
-        }
         return View(dtos);
     }
 
