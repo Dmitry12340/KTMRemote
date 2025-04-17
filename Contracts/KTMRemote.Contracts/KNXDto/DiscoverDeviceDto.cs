@@ -1,16 +1,31 @@
 ﻿namespace KTMRemote.Contracts.KNXDto;
+/// <summary>
+/// Транспортная модель интерфейса knx.
+/// </summary>
 public sealed class DiscoverDeviceDto
 {
+    /// <summary>
+    /// Имя интерфейса knx.
+    /// </summary>
     public string Name;
-    public string IndividualAddress;
-    public bool ProgrammingMode;
-    public string Ip;
-    public int Port;
 
-    public override string ToString() =>
-        $"Name:{Name}\n" +
-        $"IndividualAddress:{IndividualAddress}\n" +
-        $"ProgrammingMode:{ProgrammingMode}\n" +
-        $"Ip:{Ip}\n" +
-        $"Port:{Port}";
+    /// <summary>
+    /// Индивидуальный адрес интерфейса knx.
+    /// </summary>
+    public string IndividualAddress;
+
+    /// <summary>
+    /// Режим программирования интерфейса knx.
+    /// </summary>
+    public bool ProgrammingMode;
+
+    /// <summary>
+    /// Ip адрес интерфейса knx.
+    /// </summary>
+    public string Ip;
+
+    /// <summary>
+    /// Порт интерфейса knx.
+    /// </summary>
+    public int Port;
 }

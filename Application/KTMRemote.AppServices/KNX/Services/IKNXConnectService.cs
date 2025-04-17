@@ -3,7 +3,7 @@ using KTMRemote.Contracts.KNXDto;
 
 namespace KTMRemote.AppServices.KNX.Services;
 /// <summary>
-/// Сервис поключения к интерфейсу knx
+/// Сервис поключения к интерфейсу knx.
 /// </summary>
 public interface IKNXConnectService
 {
@@ -13,14 +13,14 @@ public interface IKNXConnectService
     KnxBus Bus { get; }
 
     /// <summary>
-    /// Подключение к интерфейсу knx
+    /// Подключение к интерфейсу knx.
     /// </summary>
     /// <param name="connectDto">Транспортная модель.</param>
     /// <param name="cancellation">Токен отмены.</param>
     Task ConnectAsync(KNXConnectDto connectDto, CancellationToken cancellation);
 
     /// <summary>
-    /// Отключение от интерфейса knx
+    /// Отключение от интерфейса knx.
     /// </summary>
     /// <param name="cancelToken">Токен отмены.</param>
     Task DisconnectAsync(CancellationToken cancelToken);
