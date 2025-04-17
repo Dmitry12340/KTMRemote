@@ -3,7 +3,7 @@ using KTMRemote.Contracts.KNXDto;
 
 namespace KTMRemote.AppServices.KNX.Services;
 /// <summary>
-/// Сервис поключения к интерфейсу knx
+/// Сервис поключения к интерфейсу knx.
 /// </summary>
 public interface IKNXConnectService
 {
